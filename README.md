@@ -20,7 +20,7 @@ Use `create-react-app` to create a To-Do list project. `cd` into your folder and
 
 ## First, the basic list.
 
-Let's change the name of the component in `App.js` to something more meaningful, like `MyList`.
+Let's change the name of the component in `App.js` to something more meaningful, like `MyList`. This is just for good practice so we have meaningful component and file names. Make sure to rename your file `App.js` to `MyList.js` to match the name of the component.
 
 Change the contents of the HTML to have a header and the start of a list and an unordered list with one empty list-item.
 
