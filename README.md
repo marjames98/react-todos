@@ -22,18 +22,47 @@ Use `create-react-app` to create a To-Do list project. `cd` into your folder and
 
 Let's change the name of the component in `App.js` to something more meaningful, like `MyList`. This is just for good practice so we have meaningful component and file names. Make sure to rename your file `App.js` to `MyList.js` to match the name of the component.
 
-Change the contents of the HTML to have a header and the start of a list and an unordered list with one empty list-item.
+Change the contents of the render function to the following:
+
+```js
+render() {
+  return (
+    <div>
+      <header>My List</Header>
+      <div>
+        <ul>
+          <li>Test List Item</li>
+        </ul>
+      </div>
+    </div>
+  )
+}
+```
 
 > Remember to change the name of the component where it's rendered in index.js! You'll also have to change the `import` statement in `index.js`, since you changed the name of the file containing the component that `index.js` is importing from!
 
 Now, our webpage displays an empty list.
 
-Make a component for each item in the list and call it `ListItem`. This component can simply render  `<li>Make the list!</li>` so that we are starting with something in this list.
+Make a component called `ListItem`. This component is going to display the contents of our list. We'll make an instance of this component for each item we want to show in our todo list. For now, this component can simply render  `<li>Make the list!</li>` so that we are starting with something in this list.
 
 * Remember to use an `export` statement at the end of the new file to make the code in this file available elsewhere in our application.
 
 * Don't forget to import your `ListItem` component into `MyList.js`.  Then, include the component in what `MyList` renders with `<ListItem />` under the existing header (in place of the existing list item)!
 
+```js
+render() {
+  return (
+    <div>
+      <header>My List</Header>
+      <div>
+        <ul>
+          <ListItem />
+        </ul>
+      </div>
+    </div>
+  )
+}
+```
 
 At this point, our app looks like this:
 
