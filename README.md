@@ -2,7 +2,6 @@
 
 ## Review
 
-
 So, we've gone through all of the basics of React. To really hammer it home with practice, let's walk through complete creation of an app. This will be a to-do list, keeping track of everything we need to do for the day (after we finish this!). It's a lot, so we're going to want it to be editable.
 
 This is what it should look like at the end **without styling**:
@@ -12,9 +11,11 @@ This is what it should look like at the end **without styling**:
 
 ## Getting Started
 
-> This is a good time to check your Activity Monitor program and close all your running node processes. Fresh start!
+**FIRST** fork and clone this repository!
 
-Use `create-react-app` to create a To-Do list project. `cd` into your folder and run `npm start` to start a server that will serve your new React application!
+**NEXT** cd into the directory created by your clone command.
+
+Next, use `create-react-app` to create a To-Do list project. `cd` into your react app folder and run `npm start` to start a server that will serve your new React application!
 
 * Make sure that as you go, you frequently check the site to ensure your changes are all reflecting accurately!
 
