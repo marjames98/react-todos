@@ -8,6 +8,9 @@ This is what it should look like at the end **without styling**:
 
 ![list-preview](https://github.com/WDI-SEA/react_state_exercises_global/blob/master/images/todo-list-3.png)
 
+## Important Note
+
+Your class may be using class-based components or functional components. Choose one or the other for this assignment, but we'll provide code for both!
 
 ## Getting Started
 
@@ -22,6 +25,8 @@ Next, use `create-react-app` to create a To-Do list project. `cd` into your reac
 ## First, the basic list.
 
 Let's change the name of the component in `App.js` to something more meaningful, like `MyList`. This is just for good practice so we have meaningful component and file names. Make sure to rename your file `App.js` to `MyList.js` to match the name of the component.
+
+**Class-Based Component**
 
 Change the contents of the render function to the following:
 
@@ -39,6 +44,10 @@ render() {
   )
 }
 ```
+
+**Functional Component**
+
+Same changes as above, except instead of a render function, the JSX goes into your return! (JSX is the stuff that looks like HTML!)
 
 > Remember to change the name of the component where it's rendered in index.js! You'll also have to change the `import` statement in `index.js`, since you changed the name of the file containing the component that `index.js` is importing from!
 
@@ -65,6 +74,8 @@ render() {
 }
 ```
 
+> For functional components, again, just remove the render() function
+
 At this point, our app looks like this:
 
 ![list-preview](https://github.com/WDI-SEA/react_state_exercises_global/blob/master/images/todo-list-1.png)
@@ -79,7 +90,7 @@ Make the value different that what you already have so you can make sure your ch
 
 Then, in `ListItem`, we'll add a list item that uses the `doThis` prop instead of the existing hard-coded text.
 
-Now that we've passed in a prop to `ListItem`, we need to call it in `ListItem.js` using `this.props`
+Now that we've passed in a prop to `ListItem`, we need to call it in `ListItem.js` using `this.props` (Just `props` for functional components!)
 
 Your app should look like it was in the previous step with a different to-do item.
 
