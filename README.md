@@ -8,7 +8,7 @@ This is what it should look like at the end **without styling**:
 
 ![list-preview](./final.png)
 
-## Class-based and function-based components
+### Class-based and function-based components
 Remember that both class-based and function-based components are common! For this exercise, we will alternate between them for practice. Eventually you should be familiar with both. 
 
 ## Getting Started
@@ -25,7 +25,7 @@ Next, use `create-react-app` to create a `to-do-list` project. `cd` into your re
 
 **Function-Based Component**
 
-Notice that `create-react-app` gave you a function-based `App` component to start with. Let's roll with this for the remainder of this component.
+Notice that `create-react-app` gave you a function-based `App` component to start with. Let's roll with this for the remainder.
 
 Change the contents of your `App` component's return statement to the following:
 
@@ -51,7 +51,7 @@ Make a component called `ListItem`. Put it in a new folder called `components` i
 
 * Remember to use an `export` statement at the end of the new file to make the code in this file available elsewhere in our application.
 
-* Don't forget to import your `ListItem` component into `App.js`. Then, inside the return statement of `App`, replace the existing `<li>` tag with our `<ListItem />`
+* Don't forget to import your `ListItem` component into `App.js`. Use the filepath that will Then, inside the return statement of `App`, replace the existing `<li>` tag with our `<ListItem />`
 
 <details>
   <summary>Need a hint?</summary>
@@ -158,8 +158,8 @@ If we want to make this a truly extensible list, we could create an array of ite
 
 The easiest way to do this is by using the `map` function. A map is like a `for` loop. With `map`, you make a new variable and iterate through each item in an array with it.
 
-1. In your `App` component, before the return statement, create a variable called `list`.
-1. Create a new variable called `listItems` that is the result of `map`ping over `list`. Each element of `listItems` should be a `ListItem` component.
+1. In your `App` component, before the return statement, create a variable called `list`. Make it an array of strings.
+1. Create a new variable called `listItems` that is the result of `map`ping over `list`. Each element of `listItems` should be a `ListItem` component, with a `doThis` prop corresponding to the string from `list`. 
 1. Replace our multiple `ListItem` components with the `listItems` variable. Remember that jsx uses curlies to embed variables. 
 
 *Note:* Please get used to mapping in this way, it is very common in react!
@@ -194,4 +194,4 @@ Your app should now look like the first image!
 
 ### Bonus
 
-Do some styling! Try separating your overall styles (like background color) and your component specific styles (like the color of your to-do items) in different css files and importing them.
+Do some styling! Notice that `App.css` should inlude styles for the `App` component, so we should make a different file, `ListItem.css`, to store the styles for the `ListItem` component.
