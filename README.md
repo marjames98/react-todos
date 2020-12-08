@@ -51,7 +51,7 @@ Make a component called `ListItem`. Put it in a new folder called `components` i
 
 * Remember to use an `export` statement at the end of the new file to make the code in this file available elsewhere in our application.
 
-* Don't forget to import your `ListItem` component into `App.js`. Use the filepath that will Then, inside the return statement of `App`, replace the existing `<li>` tag with our `<ListItem />`
+* Don't forget to import your `ListItem` component into `App.js`. Pay attention to the filepath! Then, inside the return statement of `App`, replace the existing `<li>` tag with our `<ListItem />`
 
 <details>
   <summary>Need a hint?</summary>
