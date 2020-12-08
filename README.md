@@ -146,7 +146,7 @@ Now that we've passed in a prop to `ListItem`, we need to call it in `ListItem.j
 Your app should look like it was in the previous step with a different to-do item.
 
 
-### Third, re-use the `ListItem` component
+### Re-use the `ListItem` component
 One reason we create components is so that we can repeat them easily!
 
 Add more `ListItem`s to your `App`'s return statement, giving each one a different `doThis` prop.
