@@ -2,15 +2,14 @@
 
 ## Review
 
-So, we've gone through all of the basics of React. To really hammer it home with practice, let's walk through complete creation of an app. This will be a to-do list, keeping track of everything we need to do for the day (after we finish this!). It's a lot, so we're going to want it to be editable.
+So, we've gone through all of the basics of React. To really hammer it home with practice, let's walk through complete creation of an app. This will be a to-do list, keeping track of everything we need to do for the day.
 
 This is what it should look like at the end **without styling**:
 
-![list-preview](https://github.com/WDI-SEA/react_state_exercises_global/blob/master/images/todo-list-3.png)
+![list-preview](./final.png)
 
-## Important Note
-
-Your class may be using class-based components or functional components. Choose one or the other for this assignment, but we'll provide code for both!
+## Class-based and function-based components
+Remember that both class-based and function-based components are common! For this exercise, we will alternate between them for practice. Eventually you should be familiar with both. 
 
 ## Getting Started
 
@@ -18,166 +17,181 @@ Your class may be using class-based components or functional components. Choose 
 
 **NEXT** cd into the directory created by your clone command.
 
-Next, use `create-react-app` to create a To-Do list project. `cd` into your react app folder and run `npm start` to start a server that will serve your new React application!
+Next, use `create-react-app` to create a `to-do-list` project. `cd` into your react app folder and run `npm start` to start a server that will serve your new React application!
 
 * Make sure that as you go, you frequently check the site to ensure your changes are all reflecting accurately!
 
-## First, the basic list.
+### `App`, our top-level component
 
-Let's change the name of the component in `App.js` to something more meaningful, like `MyList`. This is just for good practice so we have meaningful component and file names. Make sure to rename your file `App.js` to `MyList.js` to match the name of the component.
+**Function-Based Component**
 
-**Class-Based Component**
+Notice that `create-react-app` gave you a function-based `App` component to start with. Let's roll with this for the remainder of this component.
 
-Change the contents of the render function to the following:
+Change the contents of your `App` component's return statement to the following:
 
 ```js
-render() {
-  return (
+return (
+  <div>
+    <header>My List</header>
     <div>
-      <header>My List</Header>
-      <div>
-        <ul>
-          <li>Test List Item</li>
-        </ul>
-      </div>
+      <ul>
+        <li>Test List Item</li>
+      </ul>
     </div>
-  )
-}
+  </div>
+)
 ```
-
-**Functional Component**
-
-Same changes as above, except instead of a render function, the JSX goes into your return! (JSX is the stuff that looks like HTML!)
-
-> Remember to change the name of the component where it's rendered in index.js! You'll also have to change the `import` statement in `index.js`, since you changed the name of the file containing the component that `index.js` is importing from!
 
 Now, our webpage displays an empty list.
 
-Make a component called `ListItem`. This component is going to display the contents of our list. We'll make an instance of this component for each item we want to show in our todo list. For now, this component can simply render  `<li>Make the list!</li>` so that we are starting with something in this list.
+### Our next component
+Make a component called `ListItem`. Put it in a new folder called `components` inside the existing `src` folder. This component is going to display the contents of a single todo item. We'll make an instance of this component for each item we want to show in our todo list. For now, this component can simply render  `<li>Make the list!</li>`.
+
+* You can make this component either class-based or function-based.
 
 * Remember to use an `export` statement at the end of the new file to make the code in this file available elsewhere in our application.
 
-* Don't forget to import your `ListItem` component into `MyList.js`.  Then, include the component in what `MyList` renders with `<ListItem />` under the existing header (in place of the existing list item)!
+* Don't forget to import your `ListItem` component into `App.js`. Then, inside the return statement of `App`, replace the existing `<li>` tag with our `<ListItem />`
 
-```js
-render() {
-  return (
-    <div>
-      <header>My List</Header>
-      <div>
-        <ul>
-          <ListItem />
-        </ul>
-      </div>
-    </div>
-  )
-}
-```
+<details>
+  <summary>Need a hint?</summary>
 
-> For functional components, again, just remove the render() function
+  ```js
+    // in App.js
+    function App() {
+      return (
+        <div>
+          <header>My List</header>
+          <div>
+            <ul>
+              <ListItem />
+            </ul>
+          </div>
+        </div>
+      )
+    }
+
+    // in ListItem.js
+    // the function-based version:
+    function ListItem() {
+      return (
+        <li>Make the list!</li>
+      )
+    }
+
+    // or the class-based version:
+    class ListItem extends Component {
+      render() {
+        return (
+          <li>Make the list!</li>
+        )
+      }
+    }
+  ```
+</details>
 
 At this point, our app looks like this:
 
-![list-preview](https://github.com/WDI-SEA/react_state_exercises_global/blob/master/images/todo-list-1.png)
+![list-preview](midway.png)
 
 
-## Second, props.
+### Props to you!
 
-This is a great start - we've already nested components (`ListItem` inside of `MyList`). Now, let's add some props to make this useful and check that current list item off!
+This is a great start - we've already nested components (`ListItem` inside of `App`). Now, let's add some props to make this useful and check that current list item off!
 
-Let's first just pass a prop into `ListItem` from `MyList`. We'll call the prop something simple, like `doThis`. 
-Make the value different that what you already have so you can make sure your changes are rendering
+Let's first just pass a prop into `ListItem` from `App`. We'll call the prop something simple, like `doThis`. Make the value different that what you already have so you can make sure your changes are rendering
 
 Then, in `ListItem`, we'll add a list item that uses the `doThis` prop instead of the existing hard-coded text.
 
 Now that we've passed in a prop to `ListItem`, we need to call it in `ListItem.js` using `this.props` (Just `props` for functional components!)
 
-Your app should look like it was in the previous step with a different to-do item.
-
-
-## Third, render different items in an array.
-
-If we want to make this a truly extensible list, we could create an array of items, pass them into props through the `ListItem` component, and then render each item. Let's do that now.
-
-The easiest way to do this is by using the `map` function. A map is like a `for` loop. With `map`, you make a new variable and iterate through each item in an array with it. It looks like this:
-
-
-```
-let <new_Variable_Name> = <the_Array_We_Are_Mapping>.map( (local_Variable_Name_to_Loop, index) => (
-  <what_To_Do_With_Each_Item_in_Loop>
-))
-```
-
-Here's a simple example that makes a new array by adding an `!` to each element of an array.
-
-```js
-const phrases = ['ice cream', 'dinosaurs', 'hobbits']
-
-let excitedPhrases = phrases.map( (phrase, index) => {
-  return newPhrase = phrase + '!'
-})
-// excitedPhrases is ["ice cream!", "dinosaurs!", "hobbits!"]
-```
-
-> Note that in the above example, moustaches are used after the arrow rather than the open parentheses in the earlier example.
-In ES6, with arrow functions, you can omit the curly brackets and `return` keyword if the return value can be written as a single statement. In the same way that we `return` a single HTML element in a component's `render()` function, we can place this single-statement return value in parentheses and make use of line-breaks without confusing javascript.
-
-##### Plan
-
-* In the `MyList` component, have an array of items for the list—uncreatively called `theList`—that is passed down from `index.js` in the form of a prop
-* Create a variable to refer to the new array output by the `map` method, uncreatively but helpfully called `todoItems`.
-* Use `map` to iterate through the `todoItems` array, one `item` (this could be any name you'd like) at a time, and use each one to create a `ListItem` component in the `todoItems` list.
-* We can later refer to this list by just calling the variable in JSX (like any other variable).  For example, we could say  `{todoItems}`.
-
-##### Implementing the Plan
-
-First, make a list in `index.js`. Make an array of strings that represent your todo items. 
-Fill it with what you need to do for the day. Once you've done that, pass that array into your
-`<MyList />` component.
-
-The next step is to use the `map` function to create an array of `<ListItem />`s called `todoItems`, each with 
-its own `doThis` prop that represents a todo item from `theList`.
-
 <details>
   <summary>Need a hint?</summary>
-  
-  Here a `map` function call that will create a new array filled with components
-  ```jsx
-  let iceCreamFlavors = flavorsArray.map((flavorName, index) => (
-    <IceCream flavor={flavorName} key={'flavor'+index} />
-  ))
-  ```
-</details>
 
-> NOTE: When you have many children components, it's good to add a `key` section that functions similar to an ID. 
-
-The last step is to call the `todoItems` in the render function of `MyList` class.
-
-<details>
-  <summary>Not sure what your component should look like?</summary>
-  
-  ```jsx
-  class MyList extends Component {
-    render() {
-      let todoItems = this.props.theList.map((item, index) => (
-        <ListItem doThis={item} key={'todo' + index} />
-      ))
-
-      return (
+  ```js
+    // in App.js
+    function App() {
+      return(
         <div>
-          <h1>Things I should stop procrastinating:</h1>
-          <ul>
-            {todoItems}
-          </ul>
+          <header>My List</header>
+          <div>
+            <ul>
+              <ListItem doThis={'Learn React'}/>
+            </ul>
+          </div>
         </div>
       )
     }
-  }
+  ```
+  ```js
+    // in ListItem.js
+    // function-based
+    function ListItem(props) {
+      return (
+        <li>{props.doThis}</li>
+      )
+    }
+
+    // class-based
+    class ListItem extends Component {
+      render() {
+        return (
+          <li>{this.props.doThis}</li>
+        )
+      }
+    }
+  ```
+</details>
+
+Your app should look like it was in the previous step with a different to-do item.
+
+
+### Third, re-use the `ListItem` component
+One reason we create components is so that we can repeat them easily!
+
+Add more `ListItem`s to your `App`'s return statement, giving each one a different `doThis` prop.
+
+
+### Upgrade: render different items in an array.
+
+If we want to make this a truly extensible list, we could create an array of items, pass them into props through the `ListItem` component, and then render each item. Let's do that now.
+
+The easiest way to do this is by using the `map` function. A map is like a `for` loop. With `map`, you make a new variable and iterate through each item in an array with it.
+
+1. In your `App` component, before the return statement, create a variable called `list`.
+1. Create a new variable called `listItems` that is the result of `map`ping over `list`. Each element of `listItems` should be a `ListItem` component.
+1. Replace our multiple `ListItem` components with the `listItems` variable. Remember that jsx uses curlies to embed variables. 
+
+*Note:* Please get used to mapping in this way, it is very common in react!
+
+<details>
+  <summary>Need a hint?</summary>
+
+  ```js
+    function App() {
+      const list = ['Learn React', '???', 'Profit']
+      const todos = list.map((todo, index) => {
+        return <ListItem doThis={todo} key={`list-item-${index}`} />
+      })
+      
+      return(
+        <div>
+          <header>My List</header>
+          <div>
+            <ul>
+              {todos}
+            </ul>
+          </div>
+        </div>
+      )
+    }
   ```
 </details>
 
 Your app should now look like the first image!
 
-## Bonus
+*Note:* what's up with the `key` prop? React relies on a property called `key` to keep track of children elements in a list. Whenever you are iterating to make a list of elements, you should include a key prop that's unique to each element, often done by using the index of iteration.
+
+### Bonus
 
 Do some styling! Try separating your overall styles (like background color) and your component specific styles (like the color of your to-do items) in different css files and importing them.
